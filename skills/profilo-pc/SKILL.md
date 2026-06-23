@@ -34,9 +34,17 @@ Ogni PC ha il suo profilo con specifiche complete, riconoscibile da Pi automatic
 All'attivazione, Pi determina automaticamente il PC corrente:
 
 1. Legge `hostname` (comando: `hostname`)
-2. Cerca `~/progetti/profili/<hostname>/PROFILO.md`
-3. Se trovato → carica il profilo nel contesto
-4. Se non trovato → chiede se crearlo
+2. Legge `/etc/machine-id` (comando: `cat /etc/machine-id | head -c 8`)
+3. Cerca `~/progetti/profili/<hostname>/PROFILO.md`
+4. Se trovato, verifica che il **Machine ID** dentro PROFILO.md corrisponda:
+   - Se corrisponde → carica il profilo
+   - Se **non** corrisponde → cerca `~/progetti/profili/<hostname>-<machine-id>/PROFILO.md`
+5. Se trovato → carica
+6. Se non trovato → chiede se crearlo
+
+> **Nota:** Questa logica gestisce il caso di due PC con lo stesso hostname ma
+> machine-id diverso. Il profilo viene salvato in `<hostname>-<prime8caratteri>`
+> per evitare collisioni.
 
 Per sessioni cross-PC (es. stai lavorando su un PC ma parli di un altro):
 - "sono su [nome PC]" → carica il profilo di quel PC dal disco

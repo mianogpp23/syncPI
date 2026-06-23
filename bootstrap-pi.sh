@@ -62,13 +62,24 @@ echo "✅ Skill installata in $SKILL_DEST"
 
 # --- 4. CREA PROFILO PER QUESTO PC ---
 HOST=$(hostname)
+MACHINE_ID=$(cat /etc/machine-id 2>/dev/null || echo "unknown")
+PROFILE_ID="$HOST"
+
+# Disambiguazione machine-id (stessa logica di nuovo_profilo.sh)
+if [ -f "$PROFILI_DIR/$HOST/PROFILO.md" ]; then
+    OLD_ID=$(grep "Machine ID" "$PROFILI_DIR/$HOST/PROFILO.md" 2>/dev/null | cut -d'|' -f3 | tr -d '\`' | xargs)
+    if [ -n "$OLD_ID" ] && [ "$OLD_ID" != "$MACHINE_ID" ]; then
+        PROFILE_ID="${HOST}-${MACHINE_ID:0:8}"
+    fi
+fi
+
 echo ""
 echo "[4/5] Creazione profilo per questo PC ($HOST)..."
-if [ -f "$PROFILI_DIR/$HOST/PROFILO.md" ]; then
-    echo "   Profilo per $HOST esiste già. Vuoi rigenerarlo? [s/N]"
+if [ -f "$PROFILI_DIR/$PROFILE_ID/PROFILO.md" ]; then
+    echo "   Profilo per $PROFILE_ID esiste già. Vuoi rigenerarlo? [s/N]"
     read -r RIGENERA
     if [ "$RIGENERA" = "s" ] || [ "$RIGENERA" = "S" ]; then
-        rm -rf "$PROFILI_DIR/$HOST"
+        rm -rf "$PROFILI_DIR/$PROFILE_ID"
         bash "$PROFILI_DIR/nuovo_profilo.sh"
     else
         echo "   → Mantenuto profilo esistente"
@@ -96,7 +107,7 @@ echo "╔═══════════════════════�
 echo "║               BOOTSTRAP COMPLETATO                ║"
 echo "╚══════════════════════════════════════════════════╝"
 echo ""
-echo "📁 Profilo PC:     $PROFILI_DIR/$HOST/PROFILO.md"
+echo "📁 Profilo PC:     $PROFILI_DIR/$PROFILE_ID/PROFILO.md"
 echo "🔧 Skill Pi:       $SKILL_DEST/SKILL.md"
 echo ""
 echo "▶ Ora apri Pi e prova:"

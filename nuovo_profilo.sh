@@ -8,10 +8,22 @@
 set -e
 
 HOST=$(hostname)
-DIR="$HOME/progetti/profili/$HOST"
+MACHINE_ID=$(cat /etc/machine-id 2>/dev/null || echo "unknown")
+PROFILE_ID="$HOST"
+
+# Disambiguazione: se esiste già un profilo con stesso hostname ma machine-id diverso,
+# usa hostname-<prime8caratteri> per evitare collisioni (es. due PC chiamati "k10")
+if [ -d "$HOME/progetti/profili/$HOST" ] && [ -f "$HOME/progetti/profili/$HOST/PROFILO.md" ]; then
+    OLD_ID=$(grep "Machine ID" "$HOME/progetti/profili/$HOST/PROFILO.md" 2>/dev/null | cut -d'|' -f3 | tr -d '\`' | xargs)
+    if [ -n "$OLD_ID" ] && [ "$OLD_ID" != "$MACHINE_ID" ]; then
+        PROFILE_ID="${HOST}-${MACHINE_ID:0:8}"
+        echo "🔀 Hostname '$HOST' già usato da un altro PC — uso '$PROFILE_ID' come identificatore unico"
+    fi
+fi
+DIR="$HOME/progetti/profili/$PROFILE_ID"
 
 if [ -d "$DIR" ]; then
-    echo "⚠️  Profilo '$HOST' esiste già in $DIR"
+    echo "⚠️  Profilo '$PROFILE_ID' esiste già in $DIR"
     echo "   Opzioni:"
     echo "   1) RIGENERA   — rm -rf e ricrea da capo"
     echo "   2) AGGIORNA   — mantieni storico, aggiorna hardware"
@@ -126,10 +138,14 @@ fi
 cat > "$DIR/PROFILO.md" << EOF
 # Profilo PC: $HOST
 
+> Identificatore univoco: \`$PROFILE_ID\` — (cartella profilo)
+>
+
 ## Identità
 | Campo | Valore |
 |---|---|
 | **Machine ID** | $MACHINE_ID |
+| **Profile ID** | $PROFILE_ID |
 | **Modello** | $VENDOR $MODEL |
 | **Chassis** | $CHASSIS_NAME |
 | **Hostname** | $HOST |
@@ -257,6 +273,7 @@ echo "║            PROFILO CREATO CON SUCCESSO            ║"
 echo "╚══════════════════════════════════════════════════╝"
 echo ""
 echo "📄 $DIR/PROFILO.md"
+echo "   Display name: $HOST"
 echo ""
 echo "▶ Aggiungi problemi noti e storico interventi manualmente"
 echo "▶ Ora apri Pi e prova: 'su che PC sono'"
