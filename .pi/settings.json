@@ -1,0 +1,6 @@
+{
+  "skills": {
+    "enabled": true,
+    "includeSkills": ["profilo-pc"]
+  }
+}
