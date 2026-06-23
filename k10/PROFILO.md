@@ -30,12 +30,47 @@
 - 4 core / 4 thread
 - 3 MB cache
 
-### GPU (12 monitor)
+### Video
+
+#### GPU
 - **2× AMD FirePro W600** (Cape Verde PRO)
   - GPU1: 6× mini-DP
   - GPU2: 6× mini-DP
 - **Driver:** `radeon` (open source)
-- Configurazione: 12 monitor, risoluzione totale 8555×3221
+- Configurazione: **12 monitor**, risoluzione totale **8555×3221**
+
+#### Monitor (12 display)
+
+| # | Output | Risoluzione | Posizione (X+Y) | Rotazione | Dimensione fisica |
+|---|---|---|---|---|---|
+| 1 | DP-11 | 1920×1200 | 0+0 | normale | 518×324 mm |
+| 2 | DP-1 | 947×1684 | 151+1200 | left | 443×249 mm |
+| 3 | DP-4 | 1050×1680 | 1099+1200 | right | 434×270 mm |
+| 4 | DP-5 | 1366×768 | 1920+432 | normale | 410×230 mm |
+| 5 | DP-8 | 1920×1080 | 3286+120 | normale | 160×90 mm |
+| 6 | DP-6 | 1920×1200 | 3286+1200 | normale | 1860×1047 mm |
+| 7 | DP-7 | 1366×768 | 5206+432 | normale | 410×230 mm |
+| 8 | DP-9 | 1105×1768 | 5206+1200 | right | 473×296 mm |
+| 9 | DP-2 | 1105×1768 | 6312+1200 | left | 473×296 mm |
+| 10 | DP-3 | 1680×1050 | 6572+150 | normale | 433×271 mm |
+| 11 | DP-10 | 1137×2021 | 7418+1200 | right | 477×268 mm |
+| 12 | DP-12 | 1137×2021 | 2149+1200 | right | 521×293 mm |
+
+#### Schema posizioni (vista dall'alto)
+```
+┌───────┬──────────┬──────────┬───────┬───────┬──────────┐
+│ DP-11 │   DP-1   │  DP-4    │ DP-5  │ DP-8  │  DP-7    │
+│1920×12│ 947×1684 │1050×1680 │1366×76│1920×10│ 1366×768 │
+│  00   │  (left)  │ (right)  │   8   │  80   │          │
+├───────┴──────────┴──────────┴───────┴───────┴──────────┤
+│                       DP-6                             │
+│                    1920×1200                            │
+├──────────┬──────────┬──────────┬──────────┬────────────┤
+│  DP-9    │  DP-2    │  DP-3    │  DP-10   │   DP-12    │
+│1105×1768 │1105×1768 │1680×1050 │1137×2021 │ 1137×2021  │
+│ (right)  │ (left)   │          │ (right)  │  (right)   │
+└──────────┴──────────┴──────────┴──────────┴────────────┘
+```
 
 ### RAM
 - Totale: **11 GB**
@@ -50,24 +85,6 @@
 | `sda` | 69.2 GB | WDC WD740ADFD-00NLR5 | HDD 7.200 rpm |
 | `sdb` | 1.8 TB | WDC WD20EARX-00PASB0 | HDD (passwordlist/media) |
 | `sdc` | 480 MB | Flash Disk | USB |
-
-### Monitor (12 display)
-
-| Output | Risoluzione | Posizione | Rotazione | Dimensione fisica |
-|---|---|---|---|---|
-| DP-11 | 1920×1200 | 0+0 | normale | 518×324 mm |
-| DP-1 | 947×1684 | 151+1200 | left | 443×249 mm |
-| DP-4 | 1050×1680 | 1099+1200 | right | 434×270 mm |
-| DP-5 | 1366×768 | 1920+432 | normale | 410×230 mm |
-| DP-8 | 1920×1080 | 3286+120 | normale | 160×90 mm |
-| DP-6 | 1920×1200 | 3286+1200 | normale | 1860×1047 mm |
-| DP-7 | 1366×768 | 5206+432 | normale | 410×230 mm |
-| DP-9 | 1105×1768 | 5206+1200 | right | 473×296 mm |
-| DP-2 | 1105×1768 | 6312+1200 | left | 473×296 mm |
-| DP-3 | 1680×1050 | 6572+150 | normale | 433×271 mm |
-| DP-10 | 1137×2021 | 7418+1200 | right | 477×268 mm |
-| DP-12 | 1137×2021 | 2149+1200 | right | 521×293 mm |
-| DP-2 | 1105×1768 | 6312+1200 | left | 473×296 mm |
 
 ### Rete
 - **Ethernet:** Intel I217-LM (Gigabit)
