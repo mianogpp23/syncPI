@@ -6,8 +6,8 @@
 # ============================================================
 set -e
 
-# Inserisci qui la URL della tua repo git (o lascia vuoto per inserirla dopo)
-GIT_REPO=""
+# URL della repo profili (cambiare con la propria)
+GIT_REPO="https://github.com/mianogpp23/syncPI.git"
 
 echo "╔══════════════════════════════════════════════════╗"
 echo "║          Bootstrap Pi + Profilo PC               ║"
