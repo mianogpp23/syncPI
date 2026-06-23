@@ -12,12 +12,18 @@ MACHINE_ID=$(cat /etc/machine-id 2>/dev/null || echo "unknown")
 PROFILE_ID="$HOST"
 
 # Disambiguazione: se esiste già un profilo con stesso hostname ma machine-id diverso,
-# usa hostname-<prime8caratteri> per evitare collisioni (es. due PC chiamati "k10")
+# usa marca/modello del PC come alias automatico (es. "k10-primergy")
 if [ -d "$HOME/progetti/profili/$HOST" ] && [ -f "$HOME/progetti/profili/$HOST/PROFILO.md" ]; then
     OLD_ID=$(grep "Machine ID" "$HOME/progetti/profili/$HOST/PROFILO.md" 2>/dev/null | cut -d'|' -f3 | tr -d '\`' | xargs)
     if [ -n "$OLD_ID" ] && [ "$OLD_ID" != "$MACHINE_ID" ]; then
-        PROFILE_ID="${HOST}-${MACHINE_ID:0:8}"
-        echo "🔀 Hostname '$HOST' già usato da un altro PC — uso '$PROFILE_ID' come identificatore unico"
+        # Rileva modello per alias automatico
+        ALIAS_VENDOR=$(cat /sys/devices/virtual/dmi/id/sys_vendor 2>/dev/null | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]//g' || echo "")
+        ALIAS_MODEL=$(cat /sys/devices/virtual/dmi/id/product_name 2>/dev/null | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g; s/^-//; s/-$//' || echo "")
+        ALIAS="${ALIAS_VENDOR}-${ALIAS_MODEL}"
+        # Toglie doppioni (es. fujitsu-fujitsu...)
+        ALIAS=$(echo "$ALIAS" | sed 's/^fujitsu-fujitsu/fujitsu/')
+        PROFILE_ID="${HOST}-${ALIAS}"
+        echo "🔀 Hostname '$HOST' già usato da un altro PC — uso '$PROFILE_ID'"
     fi
 fi
 DIR="$HOME/progetti/profili/$PROFILE_ID"

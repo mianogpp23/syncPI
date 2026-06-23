@@ -1,13 +1,13 @@
 # Profilo PC: k10
 
-> Identificatore univoco: `k10-936bfb00` — (cartella profilo)
+> Identificatore univoco: `k10-fujitsu-primergy-tx2540-m1` — (cartella profilo)
 >
 
 ## Identità
 | Campo | Valore |
 |---|---|
 | **Machine ID** | 936bfb004c4443e1ad4e8f1505d09949 |
-| **Profile ID** | k10-936bfb00 |
+| **Profile ID** | k10-fujitsu-primergy-tx2540-m1 |
 | **Modello** | FUJITSU PRIMERGY TX2540 M1 |
 | **Chassis** | Server/Rack |
 | **Hostname** | k10 |

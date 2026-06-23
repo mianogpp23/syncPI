@@ -65,11 +65,15 @@ HOST=$(hostname)
 MACHINE_ID=$(cat /etc/machine-id 2>/dev/null || echo "unknown")
 PROFILE_ID="$HOST"
 
-# Disambiguazione machine-id (stessa logica di nuovo_profilo.sh)
+# Disambiguazione: se hostname già usato da un altro PC, usa marca-modello come alias
 if [ -f "$PROFILI_DIR/$HOST/PROFILO.md" ]; then
     OLD_ID=$(grep "Machine ID" "$PROFILI_DIR/$HOST/PROFILO.md" 2>/dev/null | cut -d'|' -f3 | tr -d '\`' | xargs)
     if [ -n "$OLD_ID" ] && [ "$OLD_ID" != "$MACHINE_ID" ]; then
-        PROFILE_ID="${HOST}-${MACHINE_ID:0:8}"
+        ALIAS_VENDOR=$(cat /sys/devices/virtual/dmi/id/sys_vendor 2>/dev/null | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]//g' || echo "")
+        ALIAS_MODEL=$(cat /sys/devices/virtual/dmi/id/product_name 2>/dev/null | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' || echo "")
+        ALIAS="${ALIAS_VENDOR}-${ALIAS_MODEL}"
+        ALIAS=$(echo "$ALIAS" | sed 's/^fujitsu-fujitsu/fujitsu/')
+        PROFILE_ID="${HOST}-${ALIAS}"
     fi
 fi
 

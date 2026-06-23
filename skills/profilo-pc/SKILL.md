@@ -37,14 +37,16 @@ All'attivazione, Pi determina automaticamente il PC corrente:
 2. Legge `/etc/machine-id` (comando: `cat /etc/machine-id | head -c 8`)
 3. Cerca `~/progetti/profili/<hostname>/PROFILO.md`
 4. Se trovato, verifica che il **Machine ID** dentro PROFILO.md corrisponda:
-   - Se corrisponde → carica il profilo
-   - Se **non** corrisponde → cerca `~/progetti/profili/<hostname>-<machine-id>/PROFILO.md`
+   - Se corrisponde → carica il profilo (**caso normale**, hostname unico o stesso PC)
+   - Se **non** corrisponde → cerca tra le cartelle `~/progetti/profili/<hostname>-*/`
+     quella con Machine ID corrispondente al PC corrente
 5. Se trovato → carica
 6. Se non trovato → chiede se crearlo
 
-> **Nota:** Questa logica gestisce il caso di due PC con lo stesso hostname ma
-> machine-id diverso. Il profilo viene salvato in `<hostname>-<prime8caratteri>`
-> per evitare collisioni.
+> **Nota:** In caso di collisione di hostname (due PC con lo stesso nome),
+> il profilo viene salvato in `<hostname>-<marca-modello>` (es. `k10-fujitsu-primergy`).
+> La ricerca scan tutte le cartelle con prefisso hostname finché non trova
+> il Machine ID giusto.
 
 Per sessioni cross-PC (es. stai lavorando su un PC ma parli di un altro):
 - "sono su [nome PC]" → carica il profilo di quel PC dal disco
