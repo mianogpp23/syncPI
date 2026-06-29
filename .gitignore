@@ -1,0 +1,4 @@
+# Backup e temporanei
+*.backup
+*.bak
+*~
