@@ -60,7 +60,7 @@
 - **Username:** 252037
 - **Password:** 472526
 - **CAID Sky DE:** 098D
-- **ICAM:** abilitato
+- **ICAM:** no (protocollo NewCamd standard)
 
 Vedi [`config_oscam_skyde.txt`](config_oscam_skyde.txt) per la configurazione completa di OSCam (oscam.conf, oscam.server, oscam.dvbapi, oscam.user).
 

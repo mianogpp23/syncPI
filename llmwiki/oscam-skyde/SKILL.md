@@ -13,7 +13,7 @@ Configurazione per OSCam su server cardsharing **s2.skyhd1.xyz** per **Sky Deuts
 | CAID Sky DE | 098D |
 | Protocollo | NewCamd (mgcamd) |
 | DES key | `0102030405060708091011121314` (standard) |
-| ICAM | Abilitato (`icam = 1`) |
+| ICAM | No (NewCamd standard) |
 
 ## Configurazione oscam.server
 
@@ -33,7 +33,6 @@ cccwantemu                    = 0
 inactivitytimeout             = 30
 reconnecttimeout              = 30
 lb_weight                     = 100
-icam                           = 1
 ```
 
 ## File completi
