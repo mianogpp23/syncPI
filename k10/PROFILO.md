@@ -95,6 +95,16 @@
 
 ---
 
+## Accesso Remoto
+
+| Servizio | Dettaglio |
+|---|---|
+| **RustDesk ID** | `1317205209` |
+| **RustDesk Password** | `axios` |
+| **RustDesk Server** | `rs-ny.rustdesk.com:21116` |
+
+---
+
 ## Configurazione Pi
 
 | Componente | Versione/Valore |
