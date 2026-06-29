@@ -1,0 +1,108 @@
+╔══════════════════════════════════════════════════╗
+║   CONFIGURAZIONE OSCam per Sky DE su s2.skyhd1.xyz  ║
+║   User: 252037  /  Pass: 472526                 ║
+╚══════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. oscam.conf
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[global]
+logfile                       = /var/log/oscam.log
+clienttimeout                 = 5000
+fallbacktimeout               = 2500
+maxlogsize                    = 1000
+preferlocalcards              = 1
+saveinithistory               = 1
+icam                           = 1
+
+[webif]
+httpport                      = 8888
+httpuser                      = admin
+httppwd                       = admin
+httprefresh                   = 10
+httpallowed                   = 192.168.0.0-255.255.255.255
+
+[dvbapi]
+enabled                       = 1
+au                            = 1
+pmt_mode                      = 0
+delayer                       = 60
+ecminfo_type                  = 4
+user                          = dvbapiuser
+readers                       = 1
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. oscam.server
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[reader]
+label                         = skyhd1_skyde
+protocol                      = newcamd
+device                        = s2.skyhd1.xyz,19001
+key                           = 0102030405060708091011121314
+user                          = 252037
+password                      = 472526
+group                         = 1
+caid                          = 098D
+ident                         = 098D:000000
+cccversion                    = 2.1.2
+cccwantemu                    = 0
+inactivitytimeout             = 30
+reconnecttimeout              = 30
+lb_weight                     = 100
+icam                           = 1
+
+[reader]
+label                         = skyhd1_p2
+protocol                      = newcamd
+device                        = s2.skyhd1.xyz,19002
+key                           = 0102030405060708091011121314
+user                          = 252037
+password                      = 472526
+group                         = 1
+caid                          = 098D
+ident                         = 098D:000000
+cccversion                    = 2.1.2
+cccwantemu                    = 0
+inactivitytimeout             = 30
+reconnecttimeout              = 30
+lb_weight                     = 100
+icam                           = 1
+
+(Ripeti per porte 19003-19008 se vuoi load balancing)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. oscam.dvbapi
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+P: 098D
+P: 1884
+P: 0B00
+P: 09C7
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+4. oscam.user
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[account]
+user                          = dvbapiuser
+pwd                           = dvbapiuser
+group                         = 1
+au                            = 1
+caid                          = 098D,1884,0B00,09C7
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NOTE IMPORTANTI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Server raggiungibile su s2.skyhd1.xyz (tutte le porte 19001-19008 aperte)
+✓ Il server dichiara Sky DE con CAID 098D
+✓ ICAM deve essere attivo sia in [global] che nel reader
+✓ DES key standard: 0102030405060708091011121314
+  Se non funziona, prova anche:
+  - 05060708091011121314151617181920
+  - 000102030405060708090A0B0C0D0E0F
+✓ OSCam deve essere ≥ 11700 o OSCam-emu per ICAM
+✓ Verifica log: tail -f /var/log/oscam.log
+✓ WebIf: http://ip-del-decoder:8888 (user:admin / pass:admin)
