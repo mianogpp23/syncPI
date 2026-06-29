@@ -103,7 +103,8 @@
 | **Provider** | opencode |
 | **Modello** | deepseek-v4-flash-free |
 | **Tema** | dark |
-| **Estensioni** | 13 pacchetti npm (pi-web-access, pi-hermes-memory, pi-goal, pi-plan-mode, pi-skill-creator, pi-subagents, pi-codex-goal, pi-mcp-adapter, pi-permission-system, pi-chrome-devtools, @pi-stef/catalog, @pi-stef/web, pi-rtk-opt) |
+| **Estensioni** | 12 pacchetti npm (pi-web-access, pi-goal, pi-plan-mode, pi-skill-creator, pi-subagents, pi-codex-goal, pi-mcp-adapter, pi-permission-system, pi-chrome-devtools, @pi-stef/catalog, @pi-stef/web, pi-rtk-opt) |
+| **Knowledge base** | llmwiki (sostituisce Hermes) |
 | **Skill custom** | credem-forensics, linux-sysadmin |
 | **Progetti** | Credem, filetmp, profili, system-check |
 
