@@ -78,7 +78,11 @@ NVIDIA Corporation GK208 HDMI/DP Audio Controller (rev a1)
 
 ## Configurazione Pi
 
-*Da compilare dopo il bootstrap*
+| Campo | Valore |
+|---|---|
+| **Provider** | anthropic |
+| **Knowledge base** | llmwiki (sostituisce Hermes) |
+| **Skill custom** | credem-forensics, linux-sysadmin, farmacia-ai, profilo-pc |
 
 ### Problemi noti
 *(nessuno ancora registrato)*
