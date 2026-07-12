@@ -49,9 +49,6 @@
 - **Bluetooth:** (da rilevare)
 - **5G:** Sì
 
-### Sensori
-- (Da rilevare)
-
 ---
 
 ## Configurazione Pi
@@ -61,20 +58,6 @@
 | **Pi core** | (da rilevare) |
 | **Provider** | (da rilevare) |
 | **Modello** | (da rilevare) |
-
----
-
-## Configurazione OSCam / Cardsharing
-
-### Server Sky DE
-- **URL:** `s2.skyhd1.xyz`
-- **Porte:** 19001–19008 (NewCamd)
-- **Username:** 252037
-- **Password:** 472526
-- **CAID Sky DE:** 098D
-- **ICAM:** no (protocollo NewCamd standard)
-
-Vedi [`config_oscam_skyde.txt`](config_oscam_skyde.txt) per la configurazione completa di OSCam (oscam.conf, oscam.server, oscam.dvbapi, oscam.user).
 
 ---
 
