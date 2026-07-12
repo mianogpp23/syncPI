@@ -1,16 +1,11 @@
-# Profilo PC: localhost
-
-> Identificatore univoco: `localhost` — (cartella profilo)
->
+# Profilo: Motorola Edge 50 Fusion
 
 ## Identità
 | Campo | Valore |
 |---|---|
-| **Machine ID** | N/A |
-| **Profile ID** | localhost |
-| **Modello** | Samsung SM-T580 (Galaxy Tab A 10.1) |
-| **Chassis** | N/A |
-| **Hostname** | localhost |
+| **Modello** | Motorola Edge 50 Fusion |
+| **Hostname** | localhost (Termux) |
+| **Tipo** | Smartphone Android |
 
 ---
 
@@ -18,64 +13,75 @@
 
 | Campo | Valore |
 |---|---|
-| **OS** | Android 8.1.0 (Termux) |
-| **Kernel** | 3.18.14-15260192 |
-| **Arch** | armv8l (64-bit) |
-| **Desktop** | TTY/headless (Termux) |
-| **Shell** | bash |
-| **Pacchetti** | 99 (pkg) + di sistema |
-| **Uptime** | 27 days, 9h 16m |
+| **OS** | Android 16 (API 36) |
+| **Kernel** | 6.6.87-android15-8-g88d70c0b44bf-ab14541233-4k |
+| **Arch** | aarch64 |
+| **Build** | W1UUIS36H.110-51-1-1 |
+| **Termux** | Sì |
 
 ---
 
 ## Hardware
 
-### CPU
-- **Samsung Exynos 7870 (Octa-core 1.6 GHz, ma 4 core visibili in Termux)**
-- 4 core (visibili)
-- Architettura: armv8l
-- Max freq: 1586.0000 MHz
+### Processore
+- **SoC:** (da rilevare — MediaTek Dimensity 7300/7400? — verificare)
+- **Architettura:** ARM64
 
-### GPU (0
-0 GPU)
+### Memoria
+- **RAM:** 11 GB (5.6 GB in uso)
+- **Swap:** 8.3 GB (2.7 GB in uso)
+- **Storage:** 466 GB totale (148 GB usati, 318 GB liberi)
 
+### Display
+- **Risoluzione:** 1080 × 2400 (FHD+)
+- **Densità:** 400 dpi
+- **Frequenza:** 120 Hz (presunta)
 
+### Batteria
+- **Salute:** GOOD
+- **Cicli:** 346
+- **Tecnologia:** Li-ion
+- **Tensione:** 3.863 V
+- **Temperatura:** 37.0 °C
 
-### RAM
-- Totale: **1.9Gi**
-- Usata: 1.3Gi (al momento della rilevazione)
-- Swap: 1.0Gi
+### Connettività
+- **Wi-Fi:** (da rilevare)
+- **Bluetooth:** (da rilevare)
+- **5G:** Sì
 
-### Storage
-```
-Filesystem      Size  Used Avail Use% Mounted on
-rootfs          827M  4.8M  822M   1% /
-/dev/block/dm-0  11G   10G  803M  93% /data
-```
-
-### Rete
-- **Interfacce:** lo, wlan0
-- **Ethernet:** N/A (solo Wi-Fi)
-- **Wi-Fi:** wlan0
-- **IP locale:** 10.194.9.113/24
-
-### Audio
-
-
-### Batteria / Alimentazione
-- N/A (termux-api non disponibile)
+### Sensori
+- (Da rilevare)
 
 ---
 
 ## Configurazione Pi
 
-*Da compilare dopo il bootstrap*
-
-### Problemi noti
-*(nessuno ancora registrato)*
-
-### Storico interventi
-| Data | Intervento |
+| Componente | Versione/Valore |
 |---|---|
-| 24/06/2026 | Creazione profilo |
-| 24/06/2026 | Aggiornamento: Android 8.1.0, Samsung SM-T580, 4 core, storage /data, IP wlan0 |
+| **Pi core** | (da rilevare) |
+| **Provider** | (da rilevare) |
+| **Modello** | (da rilevare) |
+
+---
+
+## Configurazione OSCam / Cardsharing
+
+### Server Sky DE
+- **URL:** `s2.skyhd1.xyz`
+- **Porte:** 19001–19008 (NewCamd)
+- **Username:** 252037
+- **Password:** 472526
+- **CAID Sky DE:** 098D
+- **ICAM:** no (protocollo NewCamd standard)
+
+Vedi [`config_oscam_skyde.txt`](config_oscam_skyde.txt) per la configurazione completa di OSCam (oscam.conf, oscam.server, oscam.dvbapi, oscam.user).
+
+---
+
+## Uptime
+- **17 giorni, 4:20**
+- **Carico:** 2.82 / 3.34 / 3.73
+
+## Problemi noti e fix
+
+(Nessuno segnalato al momento)
